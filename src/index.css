@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+@theme {
+  --color-doit-white: #F5F5F0;
+  --color-doit-beige: #E6E2DD;
+  --color-doit-stone: #8E8B82;
+  --color-doit-charcoal: #2A2A2A;
+  --color-doit-black: #111111;
+
+  --font-sans: "Inter", sans-serif;
+  --font-serif: "Playfair Display", serif;
+  
+  --ease-luxury: cubic-bezier(0.62, 0.05, 0.01, 0.99);
+}
+
+@layer base {
+  body {
+    @apply bg-doit-white text-doit-charcoal antialiased scroll-smooth;
+    font-family: var(--font-sans);
+  }
+}
+
+.font-serif-display {
+  font-family: "Playfair Display", serif;
+}
+
+/* SplitType required styles */
+.char {
+  display: inline-block;
+}
