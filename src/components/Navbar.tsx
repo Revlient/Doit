@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { cn } from '../lib/utils';
-import { useLenis } from 'lenis/react'; // Note: Assuming lenis/react might be used, but since we use a custom hook, we'll rely on window scroll or just standard GSAP ScrollTrigger for show/hide.
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -101,7 +101,7 @@ export default function Navbar() {
                 <a 
                     key={link.name}
                     href={link.href}
-                    ref={el => linksRef.current[i] = el}
+                    ref={el => { linksRef.current[i] = el }}
                     className="group relative text-xs font-sans font-medium tracking-[0.2em] uppercase overflow-hidden"
                 >
                     <span className="inline-block transition-transform duration-500 ease-luxury group-hover:-translate-y-full">
@@ -136,7 +136,7 @@ export default function Navbar() {
                     <a 
                         href={link.href}
                         onClick={() => setIsOpen(false)}
-                        ref={el => overlayLinksRef.current[i] = el}
+                        ref={el => { overlayLinksRef.current[i] = el }}
                         className="block text-[15vw] md:text-[8vw] leading-[0.9] font-serif text-doit-white hover:italic hover:text-doit-stone transition-all duration-300"
                     >
                         {link.name}

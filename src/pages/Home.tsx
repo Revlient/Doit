@@ -1,4 +1,3 @@
-import React from 'react';
 import HeroSignature from '../components/HeroSignature';
 import AboutPhilosophy from '../components/AboutPhilosophy';
 import ProcessSection from '../components/ProcessSection';

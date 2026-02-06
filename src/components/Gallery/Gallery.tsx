@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { getGalleryImages } from '../../lib/sanity';
@@ -44,7 +44,7 @@ export default function Gallery({ limit, showViewMore = false }: GalleryProps) {
       const ctx = gsap.context(() => {
         const items = gsap.utils.toArray<HTMLElement>('.gallery-item');
         
-        items.forEach((item, i) => {
+        items.forEach((item) => {
           // Clean up previous animations if any (optional but good practice)
           gsap.killTweensOf(item);
           const img = item.querySelector('img');
