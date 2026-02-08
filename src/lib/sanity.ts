@@ -1,5 +1,5 @@
 import { createClient } from '@sanity/client';
-import imageUrlBuilder from '@sanity/image-url';
+import { createImageUrlBuilder } from '@sanity/image-url';
 
 // Environment variables should be used in production
 // For now, we'll use placeholders or read from import.meta.env
@@ -10,19 +10,19 @@ export const client = createClient({
   apiVersion: '2023-05-03', // use current date (YYYY-MM-DD) to target the latest API version
 });
 
-const builder = imageUrlBuilder(client);
+const builder = createImageUrlBuilder(client);
 
 export function urlFor(source: any) {
   return builder.image(source);
 }
 
 export async function getGalleryImages() {
-  // In a real scenario, this fetches from Sanity
   // Schema: Image, Category, Order
+  // Ensure CORS is configured in Sanity Dashboard for localhost:5173
   const query = `*[_type == "galleryImage"] | order(order asc) {
     _id,
     title,
-    category,
+    "category": coalesce(category->title, "Uncategorized"),
     "imageUrl": image.asset->url,
     "lqip": image.asset->metadata.lqip,
     "aspectRatio": image.asset->metadata.dimensions.aspectRatio
@@ -34,7 +34,12 @@ export async function getGalleryImages() {
       console.warn("Sanity Project ID not found. Using mock data.");
       return getMockGalleryImages();
     }
-    return await client.fetch(query);
+    const data = await client.fetch(query);
+    if (!data || data.length === 0) {
+       console.warn("No gallery images found in Sanity. Using fallback mock data.");
+       return getMockGalleryImages();
+    }
+    return data;
   } catch (error) {
     console.error("Failed to fetch gallery images:", error);
     return getMockGalleryImages();

@@ -1,11 +1,12 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useMemo, useLayoutEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin'; 
 import { getGalleryImages } from '../../lib/sanity';
 import { cn } from '../../lib/utils';
 import { useNavigate } from 'react-router-dom';
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 interface GalleryItem {
   _id: string;
@@ -21,90 +22,163 @@ interface GalleryProps {
 }
 
 export default function Gallery({ limit, showViewMore = false }: GalleryProps) {
-  const [images, setImages] = useState<GalleryItem[]>([]);
+  const [allItems, setAllItems] = useState<GalleryItem[]>([]);
+  const [activeFilter, setActiveFilter] = useState('All'); 
+  const [selectedCategory, setSelectedCategory] = useState('All'); 
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
   const containerRef = useRef<HTMLDivElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
+    let mounted = true;
     async function loadImages() {
       const data = await getGalleryImages();
-      // Apply limit if specified
-      setImages(limit ? data.slice(0, limit) : data);
+      if (mounted) setAllItems(data);
     }
     loadImages();
-  }, [limit]);
+    return () => { mounted = false; };
+  }, []);
 
-  useEffect(() => {
-    if (images.length === 0) return;
+  const filteredItems = useMemo(() => {
+    let items = allItems;
+    if (activeFilter !== 'All') {
+      items = allItems.filter(item => item.category === activeFilter);
+    }
+    return limit ? items.slice(0, limit) : items;
+  }, [allItems, activeFilter, limit]);
 
-    // Small delay to ensure DOM is ready
-    const timer = setTimeout(() => {
-      ScrollTrigger.refresh();
+  const categories = useMemo(() => ['All', ...new Set(allItems.map(item => item.category))], [allItems]);
+
+  const handleFilterChange = (category: string) => {
+    if (selectedCategory === category || isTransitioning) return;
+
+    setSelectedCategory(category);
+    setIsTransitioning(true);
+
+    const grid = gridRef.current;
+    if (grid) {
+      grid.style.minHeight = `${grid.offsetHeight}px`;
+    }
+
+    if (containerRef.current && grid) {
+        const rect = grid.getBoundingClientRect();
+        if (rect.top < 100) {
+            gsap.to(window, { scrollTo: { y: containerRef.current, offsetY: 100 }, duration: 0.8, ease: 'power3.inOut' });
+        }
+    }
+
+    const ctx = gsap.context(() => {
+      gsap.to('.gallery-item', {
+        opacity: 0,
+        y: 20,
+        duration: 0.4,
+        ease: 'power3.out',
+        stagger: 0.02,
+        onComplete: () => {
+          setActiveFilter(category);
+          ctx.revert();
+        }
+      });
+    }, containerRef);
+  };
+
+  useLayoutEffect(() => {
+    if (filteredItems.length === 0 && allItems.length === 0) return;
+
+    const ctx = gsap.context(() => {
+      ScrollTrigger.getAll().forEach(t => {
+        if (t.vars.trigger && (t.vars.trigger as Element).classList?.contains('gallery-item')) {
+           t.kill();
+        }
+      });
+
+      const items = gsap.utils.toArray<HTMLElement>('.gallery-item');
       
-      const ctx = gsap.context(() => {
-        const items = gsap.utils.toArray<HTMLElement>('.gallery-item');
-        
-        items.forEach((item) => {
-          // Clean up previous animations if any (optional but good practice)
-          gsap.killTweensOf(item);
-          const img = item.querySelector('img');
-          if(img) gsap.killTweensOf(img);
-
-          // Parallax effect for image inside the container
-          gsap.fromTo(item, 
-            { 
-              y: 100, 
-              opacity: 0 
-            },
-            {
-              y: 0,
-              opacity: 1,
-              duration: 1.2,
-              ease: 'power3.out',
-              scrollTrigger: {
-                trigger: item,
-                start: 'top bottom-=10%',
-                toggleActions: 'play none none reverse'
-              }
-            }
-          );
-
-          if (img) {
-             gsap.fromTo(img,
-              { scale: 1.2 },
-              {
-                scale: 1,
-                ease: 'none',
-                scrollTrigger: {
-                  trigger: item,
-                  start: 'top bottom',
-                  end: 'bottom top',
-                  scrub: true,
-                }
-              }
-             );
+      if (isTransitioning) {
+        gsap.set(items, { opacity: 0, y: 30 });
+        gsap.to(items, {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power3.out',
+          stagger: 0.05,
+          onComplete: () => {
+            setIsTransitioning(false);
+            if (gridRef.current) gridRef.current.style.minHeight = '';
+            setupScrollTriggers(items);
+            ScrollTrigger.refresh();
           }
         });
-      }, containerRef);
-      
-      return () => ctx.revert();
-    }, 100);
+      } else {
+        gsap.set(items, { opacity: 0, y: 50 });
+        ScrollTrigger.batch(items, {
+            onEnter: batch => gsap.to(batch, {
+                opacity: 1, y: 0, stagger: 0.1, duration: 1, ease: 'power3.out', overwrite: true
+            }),
+            start: "top 90%",
+            once: true
+        });
+        setupScrollTriggers(items);
+      }
+    }, containerRef);
+    return () => ctx.revert();
+  }, [filteredItems]);
 
-    return () => clearTimeout(timer);
-  }, [images]);
+  const setupScrollTriggers = (items: HTMLElement[]) => {
+    items.forEach(item => {
+        const img = item.querySelector('img');
+        if (img) {
+            gsap.to(img, {
+                scale: 1,
+                scrollTrigger: {
+                    trigger: item,
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    scrub: true
+                }
+            });
+            gsap.set(img, { scale: 1.2 }); 
+        }
+    });
+  };
 
   return (
     <section ref={containerRef} className="pb-24 px-4 md:px-8 lg:px-12 bg-doit-white relative z-10 flex flex-col items-center">
       <div className="max-w-[1920px] mx-auto w-full">
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-16 gap-x-8 md:gap-y-24 md:gap-x-12">
-          {images.map((image, index) => (
+        {!limit && (
+            <div className="flex flex-wrap justify-center gap-6 md:gap-10 mb-16 md:mb-24 px-4">
+                {categories.map((cat) => (
+                    <button
+                        key={cat}
+                        onClick={() => handleFilterChange(cat)}
+                        disabled={isTransitioning}
+                        className={cn(
+                            "text-sm md:text-base font-serif transition-colors duration-300 relative py-1",
+                            selectedCategory === cat 
+                                ? "text-doit-black" 
+                                : "text-doit-stone opacity-50 hover:opacity-100"
+                        )}
+                    >
+                        {cat}
+                        <span className={cn(
+                            "absolute bottom-0 left-0 w-full h-[1px] bg-doit-charcoal transform transition-transform duration-500 ease-luxury origin-left",
+                            selectedCategory === cat ? "scale-x-100" : "scale-x-0"
+                        )}></span>
+                    </button>
+                ))}
+            </div>
+        )}
+        
+        <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-16 gap-x-8 md:gap-y-24 md:gap-x-12 min-h-[50vh]">
+          {filteredItems.map((image, index) => (
             <div 
               key={image._id} 
               className={cn(
                 "gallery-item group relative overflow-hidden",
-                // Offset every 2nd item in a column for masonry feel (simplified)
-                index % 3 === 1 ? "md:translate-y-12 lg:translate-y-20" : ""
+                (filteredItems.length > 2 && index % 3 === 1) ? "md:translate-y-12 lg:translate-y-20" : ""
               )}
             >
               <div 
@@ -114,10 +188,10 @@ export default function Gallery({ limit, showViewMore = false }: GalleryProps) {
                 <img 
                   src={image.imageUrl} 
                   alt={image.title}
-                  className="w-full h-full object-cover transform origin-center transition-transform duration-700 will-change-transform"
+                  style={{ transform: 'scale(1.2)' }}
+                  className="w-full h-full object-cover transform origin-center will-change-transform"
                 />
                 
-                {/* Hover Overlay */}
                 <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out" />
               </div>
 
@@ -129,9 +203,9 @@ export default function Gallery({ limit, showViewMore = false }: GalleryProps) {
           ))}
         </div>
         
-        {images.length === 0 && (
-             <div className="h-96 flex items-center justify-center text-doit-stone opacity-50">
-                Loading Gallery...
+        {filteredItems.length === 0 && allItems.length > 0 && (
+             <div className="h-96 flex items-center justify-center text-doit-stone opacity-50 col-span-full">
+                {activeFilter === 'All' ? 'Loading Gallery...' : 'No projects found in this category'}
              </div>
         )}
       </div>
