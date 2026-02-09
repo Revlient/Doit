@@ -7,7 +7,7 @@ export default defineConfig({
   name: 'default',
   title: 'DOIT Interiors',
 
-  projectId: 'wbrwrdre',
+  projectId: '772zlrzc',
   dataset: 'production',
 
   plugins: [structureTool(), visionTool()],
