@@ -69,22 +69,22 @@ export default function ProcessSection() {
   }, []);
 
   return (
-    <section id="process" ref={sectionRef} className="h-screen overflow-hidden bg-doit-white relative">
+    <section id="process" ref={sectionRef} className="h-screen overflow-hidden bg-doit-black relative">
         
         {/* Sticky Header - Stays during scroll */}
-        <div className="absolute top-8 left-6 md:top-12 md:left-16 z-20 pointer-events-none mix-blend-difference text-doit-white/80">
-             <span className="text-xs font-sans tracking-[0.2em] uppercase opacity-70 block mb-2">The Approach</span>
-             <h2 className="text-2xl md:text-3xl font-serif">Process</h2>
+        <div className="absolute top-8 left-6 md:top-12 md:left-16 z-20 pointer-events-none text-doit-white/80">
+             <span className="text-xs font-sans tracking-[0.2em] uppercase opacity-70 block mb-2 text-doit-teal">The Approach</span>
+             <h2 className="text-2xl md:text-3xl font-serif text-doit-white">Process</h2>
         </div>
 
         {/* Horizontal Container */}
         <div ref={containerRef} className="h-full flex flex-nowrap w-[400%]">
             {steps.map((step, index) => (
-                <div key={index} className="process-panel w-screen h-full flex flex-col md:flex-row relative bg-doit-white border-r border-doit-stone/10">
+                <div key={index} className="process-panel w-screen h-full flex flex-col md:flex-row relative bg-doit-black border-r border-doit-teal/5">
                     
                     {/* Background Visual Layer (Subtle) */}
                     <div className="absolute inset-0 z-0 opacity-5 md:opacity-10 pointer-events-none">
-                         <span className="panel-num text-[30vw] font-serif leading-none text-doit-charcoal absolute -bottom-20 -left-10 select-none">
+                         <span className="panel-num text-[30vw] font-serif leading-none text-doit-deep-blue/30 absolute -bottom-20 -left-10 select-none">
                             {step.number}
                          </span>
                     </div>
@@ -93,11 +93,11 @@ export default function ProcessSection() {
                     <div className="w-full md:w-1/2 h-full flex flex-col justify-center px-8 md:px-24 relative z-10 order-2 md:order-1 pt-20 md:pt-0">
                          <div className="max-w-xl">
                              <div className="flex items-center gap-4 mb-6">
-                                <span className="text-sm font-sans tracking-widest uppercase text-doit-stone border border-doit-stone/30 px-3 py-1 rounded-full">{step.subtitle}</span>
-                                <div className="h-[1px] w-12 bg-doit-stone/30"></div>
+                                <span className="text-sm font-sans tracking-widest uppercase text-doit-teal border border-doit-teal/20 px-3 py-1 rounded-full">{step.subtitle}</span>
+                                <div className="h-[1px] w-12 bg-doit-teal/30"></div>
                              </div>
                              
-                             <h3 className="panel-heading text-5xl md:text-7xl lg:text-8xl font-serif text-doit-charcoal mb-8 leading-[0.9]">
+                             <h3 className="panel-heading text-5xl md:text-7xl lg:text-8xl font-serif text-doit-white mb-8 leading-[0.9]">
                                 {step.title}
                              </h3>
 
@@ -109,11 +109,11 @@ export default function ProcessSection() {
 
                     {/* Right Content (Image) */}
                     <div className="w-full md:w-1/2 h-full relative overflow-hidden order-1 md:order-2">
-                         <div className="absolute inset-0 bg-doit-stone/10"></div>
+                         <div className="absolute inset-0 bg-doit-surface-alt/20"></div>
                          <img 
                             src={step.image} 
                             alt={step.title} 
-                            className="panel-img w-full h-full object-cover grayscale opacity-90 hover:grayscale-0 hover:opacity-100 transition-all duration-700 ease-luxury" 
+                             className="panel-img w-full h-full object-cover opacity-80 brightness-[0.7] hover:brightness-90 hover:opacity-100 transition-all duration-700 ease-luxury" 
                          />
                          
                          {/* Optional Overlay Text */}
@@ -127,7 +127,7 @@ export default function ProcessSection() {
         </div>
 
         {/* Progress Bar */}
-        <div className="absolute bottom-0 left-0 h-1 bg-doit-charcoal/10 w-full z-20">
+        <div className="absolute bottom-0 left-0 h-1 bg-doit-teal/10 w-full z-20">
              {/* This could be animated dynamically to show progress */}
         </div>
     </section>

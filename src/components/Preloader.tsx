@@ -109,16 +109,16 @@ export default function Preloader() {
   return (
     <div 
       ref={containerRef} 
-      className="fixed inset-0 z-[9999] bg-doit-white flex items-center justify-center pointer-events-none"
+      className="fixed inset-0 z-[9999] bg-doit-black flex items-center justify-center pointer-events-none"
     >
       <div ref={textContainerRef} className="overflow-visible flex items-center justify-center translate-y-0 translate-x-0">
         <h1 
-            className="text-[12vw] md:text-[8vw] font-serif leading-none tracking-tighter text-doit-black flex relative"
+            className="text-[12vw] md:text-[8vw] font-serif leading-none tracking-tighter flex relative"
         >
-            <span className="loader-char inline-block">D</span>
-            <span className="loader-char inline-block">O</span>
-            <span className="loader-char inline-block">I</span>
-            <span className="loader-char inline-block">T</span>
+            <span className="loader-char inline-block text-doit-teal">D</span>
+            <span className="loader-char inline-block text-doit-teal">O</span>
+            <span className="loader-char inline-block text-doit-deep-blue">I</span>
+            <span className="loader-char inline-block text-doit-deep-blue">T</span>
         </h1>
       </div>
     </div>

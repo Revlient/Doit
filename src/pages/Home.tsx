@@ -9,7 +9,7 @@ import Footer from '../components/Footer';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-doit-white selection:bg-doit-stone selection:text-white overflow-x-hidden">
+    <div className="min-h-screen bg-doit-black selection:bg-doit-teal/30 selection:text-white overflow-x-hidden">
       {/* Navigation */}
       <Navbar />
 

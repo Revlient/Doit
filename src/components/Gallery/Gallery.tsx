@@ -145,7 +145,7 @@ export default function Gallery({ limit, showViewMore = false }: GalleryProps) {
   };
 
   return (
-    <section ref={containerRef} className="pb-24 px-4 md:px-8 lg:px-12 bg-doit-white relative z-10 flex flex-col items-center">
+    <section ref={containerRef} className="pb-24 px-4 md:px-8 lg:px-12 bg-doit-surface relative z-10 flex flex-col items-center">
       <div className="max-w-[1920px] mx-auto w-full">
         
         {!limit && (
@@ -158,13 +158,13 @@ export default function Gallery({ limit, showViewMore = false }: GalleryProps) {
                         className={cn(
                             "text-sm md:text-base font-serif transition-colors duration-300 relative py-1",
                             selectedCategory === cat 
-                                ? "text-doit-black" 
-                                : "text-doit-stone opacity-50 hover:opacity-100"
+                                ? "text-doit-teal" 
+                                : "text-doit-stone opacity-50 hover:opacity-100 hover:text-doit-white"
                         )}
                     >
                         {cat}
                         <span className={cn(
-                            "absolute bottom-0 left-0 w-full h-[1px] bg-doit-charcoal transform transition-transform duration-500 ease-luxury origin-left",
+                            "absolute bottom-0 left-0 w-full h-[1px] bg-doit-teal transform transition-transform duration-500 ease-luxury origin-left",
                             selectedCategory === cat ? "scale-x-100" : "scale-x-0"
                         )}></span>
                     </button>
@@ -182,7 +182,7 @@ export default function Gallery({ limit, showViewMore = false }: GalleryProps) {
               )}
             >
               <div 
-                className="relative overflow-hidden w-full bg-doit-beige cursor-pointer"
+                className="relative overflow-hidden w-full bg-doit-surface-alt cursor-pointer border border-doit-teal/5"
                 style={{ aspectRatio: image.aspectRatio || 4/3 }}
               >
                 <img 
@@ -196,7 +196,7 @@ export default function Gallery({ limit, showViewMore = false }: GalleryProps) {
               </div>
 
               <div className="mt-4 flex justify-between items-baseline opacity-80 group-hover:opacity-100 transition-opacity duration-500">
-                <h3 className="text-lg md:text-xl font-serif text-doit-charcoal">{image.title}</h3>
+                <h3 className="text-lg md:text-xl font-serif text-doit-white">{image.title}</h3>
                 <span className="text-xs font-sans tracking-widest uppercase text-doit-stone">{image.category}</span>
               </div>
             </div>
@@ -214,13 +214,13 @@ export default function Gallery({ limit, showViewMore = false }: GalleryProps) {
         <div className="mt-32 md:mt-40">
            <button 
              onClick={() => navigate('/work')}
-             className="relative group overflow-hidden px-8 py-3"
-           >
-              <span className="relative z-10 text-sm font-sans tracking-[0.2em] uppercase text-doit-charcoal transition-colors group-hover:text-doit-white">
-                View All Projects
-              </span>
-              <div className="absolute inset-0 bg-doit-charcoal transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-luxury origin-left"></div>
-              <div className="absolute bottom-0 left-0 w-full h-[1px] bg-doit-charcoal/30 group-hover:bg-transparent transition-colors"></div>
+              className="relative group overflow-hidden px-8 py-3"
+            >
+               <span className="relative z-10 text-sm font-sans tracking-[0.2em] uppercase text-doit-white transition-colors group-hover:text-doit-black">
+                 View All Projects
+               </span>
+               <div className="absolute inset-0 bg-doit-teal transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-luxury origin-left"></div>
+               <div className="absolute bottom-0 left-0 w-full h-[1px] bg-doit-teal/30 group-hover:bg-transparent transition-colors"></div>
            </button>
         </div>
       )}

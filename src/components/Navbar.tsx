@@ -84,15 +84,19 @@ export default function Navbar() {
       <nav 
         ref={navRef}
         className={cn(
-          "fixed top-0 left-0 w-full z-[100] px-6 py-6 md:px-12 md:py-8 flex justify-between items-center transition-all duration-500",
-          isScrolled ? "bg-doit-white/80 backdrop-blur-md text-doit-charcoal shadow-sm py-4 md:py-5" : "mix-blend-difference text-doit-white"
+          "fixed top-0 left-0 w-full z-[100] px-6 py-4 md:px-12 md:py-6 flex justify-between items-center transition-all duration-500",
+          isScrolled 
+            ? "bg-doit-black/85 backdrop-blur-xl text-doit-white shadow-[0_4px_30px_rgba(0,0,0,0.4)] border-b border-doit-teal/10 py-3 md:py-4" 
+            : "text-doit-white"
         )}
       >
         {/* Logo */}
         <a href="/" className="z-[101] group relative">
-            <span className="font-serif text-3xl md:text-4xl tracking-tighter font-bold">
-                Doit.
-            </span>
+            <img 
+              src="/images/logo.png" 
+              alt="Doit Design & Interiors" 
+              className="h-10 md:h-12 w-auto object-contain transition-all duration-300 group-hover:brightness-125"
+            />
         </a>
 
         {/* Desktop Menu */}
@@ -102,12 +106,12 @@ export default function Navbar() {
                     key={link.name}
                     href={link.href}
                     ref={el => { linksRef.current[i] = el }}
-                    className="group relative text-xs font-sans font-medium tracking-[0.2em] uppercase overflow-hidden"
+                    className="group relative text-xs font-sans font-medium tracking-[0.2em] uppercase overflow-hidden text-doit-white/80 hover:text-doit-teal transition-colors duration-300"
                 >
                     <span className="inline-block transition-transform duration-500 ease-luxury group-hover:-translate-y-full">
                         {link.name}
                     </span>
-                    <span className="absolute left-0 top-0 inline-block transition-transform duration-500 ease-luxury translate-y-full group-hover:translate-y-0 text-doit-stone font-serif italic normal-case tracking-normal text-lg leading-3">
+                    <span className="absolute left-0 top-0 inline-block transition-transform duration-500 ease-luxury translate-y-full group-hover:translate-y-0 text-doit-teal font-serif italic normal-case tracking-normal text-lg leading-3">
                         {link.name}
                     </span>
                 </a>
@@ -128,7 +132,7 @@ export default function Navbar() {
       {/* Fullscreen Overlay Menu */}
       <div 
         ref={menuRef}
-        className="fixed inset-0 bg-doit-charcoal z-[90] flex flex-col justify-center px-6 md:px-12 translate-y-[-100%]"
+        className="fixed inset-0 bg-doit-black z-[90] flex flex-col justify-center px-6 md:px-12 translate-y-[-100%]"
       >
         <div className="flex flex-col gap-2">
             {navLinks.map((link, i) => (
@@ -137,7 +141,7 @@ export default function Navbar() {
                         href={link.href}
                         onClick={() => setIsOpen(false)}
                         ref={el => { overlayLinksRef.current[i] = el }}
-                        className="block text-[15vw] md:text-[8vw] leading-[0.9] font-serif text-doit-white hover:italic hover:text-doit-stone transition-all duration-300"
+                        className="block text-[15vw] md:text-[8vw] leading-[0.9] font-serif text-doit-white hover:italic hover:text-doit-teal transition-all duration-300"
                     >
                         {link.name}
                     </a>
@@ -146,9 +150,9 @@ export default function Navbar() {
         </div>
 
         <div className="absolute bottom-12 left-6 md:left-12 flex gap-8 text-doit-stone text-xs tracking-widest uppercase font-sans">
-             <a href="#">Instagram</a>
-             <a href="#">LinkedIn</a>
-             <a href="#">Contact</a>
+             <a href="#" className="hover:text-doit-teal transition-colors">Instagram</a>
+             <a href="#" className="hover:text-doit-teal transition-colors">LinkedIn</a>
+             <a href="#" className="hover:text-doit-teal transition-colors">Contact</a>
         </div>
       </div>
     </>
