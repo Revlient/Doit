@@ -53,7 +53,7 @@ export default function ProcessSection() {
                 pin: true,
                 scrub: 1, // Smooth interaction
                 // Calculate scroll amount based on number of panels to ensure smooth speed
-                end: () => "+=" + (containerRef.current?.offsetWidth || window.innerWidth) * (totalPanels - 1), 
+                end: () => "+=" + (containerRef.current?.offsetWidth || window.innerWidth) * (totalPanels - 1)/6, 
                 snap: {
                     snapTo: 1 / (totalPanels - 1),
                     duration: { min: 0.2, max: 0.6 },
