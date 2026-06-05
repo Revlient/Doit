@@ -18,8 +18,7 @@ export default function Navbar() {
   const menuRef = useRef<HTMLDivElement>(null);
   const linksRef = useRef<(HTMLAnchorElement | null)[]>([]);
   const overlayLinksRef = useRef<(HTMLAnchorElement | null)[]>([]);
-  const hamburgerRef = useRef<HTMLDivElement>(null);
-
+  const hamburgerRef = useRef<HTMLButtonElement>(null); // ← FIXED
   const [isScrolled, setIsScrolled] = useState(false);
 
   // Magnetic Hover for Hamburger
@@ -91,7 +90,6 @@ export default function Navbar() {
         { y: 0, opacity: 1, stagger: 0.1, duration: 0.8 },
         '-=0.6'
       );
-
     } else {
       document.body.style.overflow = '';
 
@@ -113,8 +111,6 @@ export default function Navbar() {
 
   // Scroll Intelligence
   useEffect(() => {
-    let lastScroll = 0;
-
     const showAnim = gsap.fromTo(
       navRef.current,
       { yPercent: -100 },
@@ -132,21 +128,17 @@ export default function Navbar() {
       onUpdate: (self) => {
         const currentScroll = self.scroll();
 
-        // Direction-based hide/show
         if (self.direction === -1) {
           showAnim.play();
         } else if (currentScroll > 120) {
           showAnim.reverse();
         }
 
-        // Background evolution
         if (currentScroll > 60) {
           setIsScrolled(true);
         } else {
           setIsScrolled(false);
         }
-
-        lastScroll = currentScroll;
       }
     });
 
@@ -165,14 +157,14 @@ export default function Navbar() {
         )}
       >
         {/* Logo with subtle reveal */}
-        <a 
-          href="/" 
+        <a
+          href="/"
           className="group relative z-[101] flex items-center gap-3"
         >
           <div className="relative overflow-hidden">
-            <img 
-              src="/images/logo.png" 
-              alt="Doit Design & Interiors" 
+            <img
+              src="/images/logo.png"
+              alt="Doit Design & Interiors"
               className="h-9 md:h-11 w-auto object-contain transition-all duration-500 group-hover:scale-105"
             />
           </div>
@@ -190,17 +182,12 @@ export default function Navbar() {
               ref={el => { linksRef.current[i] = el; }}
               className="group relative px-1 py-2 text-sm font-medium tracking-[0.5px] text-doit-white/75 hover:text-white transition-all duration-300 overflow-hidden"
             >
-              {/* Primary Text */}
               <span className="relative inline-block transition-all duration-500 group-hover:-translate-y-3">
                 {link.name}
               </span>
-
-              {/* Hover Reveal Layer */}
               <span className="absolute left-0 top-full text-doit-teal font-serif italic tracking-normal text-base translate-y-0 opacity-0 group-hover:opacity-100 group-hover:-translate-y-3 transition-all duration-500 pointer-events-none">
                 {link.name}
               </span>
-
-              {/* Underline accent */}
               <span className="absolute bottom-0 left-1/2 h-[1px] w-0 bg-gradient-to-r from-transparent via-doit-teal to-transparent group-hover:w-full transition-all duration-700" />
             </a>
           ))}
@@ -214,19 +201,19 @@ export default function Navbar() {
           aria-label="Toggle menu"
         >
           <div className="relative w-6 h-6">
-            <span 
+            <span
               className={cn(
                 "absolute left-0 top-1/2 h-[1.5px] w-full bg-white transition-all duration-500",
                 isOpen ? "rotate-45 top-1/2" : "-translate-y-1.5"
               )}
             />
-            <span 
+            <span
               className={cn(
                 "absolute left-0 top-1/2 h-[1.5px] w-full bg-white transition-all duration-500",
                 isOpen ? "opacity-0" : ""
               )}
             />
-            <span 
+            <span
               className={cn(
                 "absolute left-0 top-1/2 h-[1.5px] w-full bg-white transition-all duration-500",
                 isOpen ? "-rotate-45 top-1/2" : "translate-y-1.5"
@@ -250,7 +237,6 @@ export default function Navbar() {
         ref={menuRef}
         className="fixed inset-0 bg-doit-black z-[90] translate-y-[-100%] flex flex-col overflow-hidden"
       >
-        {/* Background accent */}
         <div className="absolute inset-0 bg-[radial-gradient(#ffffff08_0.5px,transparent_1px)] bg-[length:4px_4px] pointer-events-none" />
 
         <div className="flex-1 flex flex-col justify-center px-6 md:px-12 pt-20">
@@ -280,12 +266,10 @@ export default function Navbar() {
               <a href="#" className="social-link hover:text-white transition-colors">BEHANCE</a>
               <a href="#" className="social-link hover:text-white transition-colors">LINKEDIN</a>
             </div>
-
             <div className="text-xs text-doit-stone/70 font-mono tracking-[2px]">
               © DOIT STUDIO 2026
             </div>
-
-            <button 
+            <button
               onClick={() => setIsOpen(false)}
               className="md:hidden text-xs uppercase tracking-widest border border-white/30 px-6 py-3 hover:bg-white hover:text-black transition-all"
             >
