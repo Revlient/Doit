@@ -25,11 +25,13 @@ export default function Footer() {
             <div className="md:col-span-2 md:col-start-6">
                 <span className="text-xs font-sans tracking-[0.2em] uppercase text-doit-teal block mb-6 opacity-80">Sitemap</span>
                 <ul className="flex flex-col gap-3 font-serif text-lg">
-                    <li><a href="#" className="hover:text-doit-teal transition-colors duration-300">Home</a></li>
-                    <li><a href="#work" className="hover:text-doit-teal transition-colors duration-300">Work</a></li>
-                    <li><a href="#about" className="hover:text-doit-teal transition-colors duration-300">Studio</a></li>
-                    <li><a href="#process" className="hover:text-doit-teal transition-colors duration-300">Process</a></li>
-                    <li><a href="#contact" className="hover:text-doit-teal transition-colors duration-300">Contact</a></li>
+                    <li><a href="/" className="hover:text-doit-teal transition-colors duration-300">Home</a></li>
+                    <li><a href="/services" className="hover:text-doit-teal transition-colors duration-300">Services</a></li>
+                    <li><a href="/packages/Civil Works" className="hover:text-doit-teal transition-colors duration-300">Civil Works</a></li>
+                    <li><a href="/packages/Interior Works" className="hover:text-doit-teal transition-colors duration-300">Interior Works</a></li>
+                    <li><a href="/#work" className="hover:text-doit-teal transition-colors duration-300">Work</a></li>
+                    <li><a href="/#about" className="hover:text-doit-teal transition-colors duration-300">Studio</a></li>
+                    <li><a href="/#process" className="hover:text-doit-teal transition-colors duration-300">Process</a></li>
                 </ul>
             </div>
 

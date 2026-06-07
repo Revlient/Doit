@@ -7,31 +7,38 @@ gsap.registerPlugin(ScrollTrigger);
 const steps = [
     { 
         number: '01', 
-        title: 'Discover', 
-        subtitle: 'The Foundation',
-        desc: 'We begin by listening to the silence between your words. Understanding your rhythm, needs, and vision is the bedrock of our design process.',
+        title: 'Consult', 
+        subtitle: 'The Beginning',
+        desc: 'Talk to our interior designers & get an estimate.',
         image: 'https://images.unsplash.com/photo-1507089947368-19c1da9775ae?q=80&w=2000&auto=format&fit=crop'
     },
     { 
         number: '02', 
         title: 'Design', 
         subtitle: 'Concept & Form',
-        desc: 'Translating abstract concepts into tangible spatial harmony. Sketches become structure, light becomes a material, and space finds its purpose.',
+        desc: 'Detailed drawing and approval.',
         image: 'https://images.unsplash.com/photo-1600607687644-c7171b42498f?q=80&w=2000&auto=format&fit=crop'
     },
     { 
         number: '03', 
-        title: 'Refine', 
+        title: 'Produce', 
         subtitle: 'Materiality',
-        desc: 'A meticulous iteration on materials, textures, and details. We curate a dialogue between stone, wood, and fabric until they speak the same language.',
+        desc: 'Production at own factory.',
         image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=2000&auto=format&fit=crop'
     },
     { 
         number: '04', 
-        title: 'Deliver', 
+        title: 'Execute', 
         subtitle: 'Realization',
-        desc: 'Executing with precision and quiet confidence. The moment vision becomes reality, and a house finally feels like a home.',
+        desc: 'Material delivery and execution as per commitment.',
         image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2000&auto=format&fit=crop'
+    },
+    { 
+        number: '05', 
+        title: 'Deliver', 
+        subtitle: 'Handover',
+        desc: 'On time project hand over.',
+        image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=2000&auto=format&fit=crop'
     },
 ];
 
@@ -74,11 +81,11 @@ export default function ProcessSection() {
         {/* Sticky Header - Stays during scroll */}
         <div className="absolute top-8 left-6 md:top-12 md:left-16 z-20 pointer-events-none text-doit-white/80">
              <span className="text-xs font-sans tracking-[0.2em] uppercase opacity-70 block mb-2 text-doit-teal">The Approach</span>
-             <h2 className="text-2xl md:text-3xl font-serif text-doit-white">Process</h2>
+             <h2 className="text-2xl md:text-3xl font-serif text-doit-white">Interior project completion within 45 working days<span className="text-doit-stone text-sm align-super">*</span></h2>
         </div>
 
         {/* Horizontal Container */}
-        <div ref={containerRef} className="h-full flex flex-nowrap w-[400%]">
+        <div ref={containerRef} className="h-full flex flex-nowrap w-[500%]">
             {steps.map((step, index) => (
                 <div key={index} className="process-panel w-screen h-full flex flex-col md:flex-row relative bg-doit-black border-r border-doit-teal/5">
                     

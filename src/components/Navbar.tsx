@@ -2,23 +2,38 @@ import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { cn } from '../lib/utils';
+import { WHATSAPP_URL } from '../config';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const navLinks = [
-  { name: 'Work', href: '#work' },
-  { name: 'About', href: '#about' },
-  { name: 'Process', href: '#process' },
-  { name: 'Contact', href: '#contact' }
+type NavLink = {
+  name: string;
+  href?: string;
+  subLinks?: { name: string; href: string }[];
+};
+
+const navLinks: NavLink[] = [
+  { name: 'About', href: '/#about' },
+  { name: 'Services', href: '/services' },
+  { 
+    name: 'Packages', 
+    subLinks: [
+      { name: 'Civil Works', href: '/packages/Civil Works' },
+      { name: 'Interior Works', href: '/packages/Interior Works' }
+    ]
+  },
+  { name: 'Work', href: '/#work' },
+  { name: 'Process', href: '/#process' },
+  { name: 'Contact', href: '/#contact' }
 ];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const navRef = useRef<HTMLElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
-  const linksRef = useRef<(HTMLAnchorElement | null)[]>([]);
-  const overlayLinksRef = useRef<(HTMLAnchorElement | null)[]>([]);
-  const hamburgerRef = useRef<HTMLDivElement>(null);
+  const linksRef = useRef<(HTMLElement | null)[]>([]);
+  const overlayLinksRef = useRef<(HTMLElement | null)[]>([]);
+  const hamburgerRef = useRef<HTMLButtonElement>(null);
 
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -69,28 +84,28 @@ export default function Navbar() {
         y: '0%',
         duration: 1.2,
       })
-      .fromTo(
-        overlayLinksRef.current,
-        {
-          y: 120,
-          opacity: 0,
-          rotateX: -20,
-        },
-        {
-          y: 0,
-          opacity: 1,
-          rotateX: 0,
-          duration: 1.1,
-          stagger: 0.08,
-        },
-        '-=0.8'
-      )
-      .fromTo(
-        '.social-link',
-        { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, stagger: 0.1, duration: 0.8 },
-        '-=0.6'
-      );
+        .fromTo(
+          overlayLinksRef.current,
+          {
+            y: 120,
+            opacity: 0,
+            rotateX: -20,
+          },
+          {
+            y: 0,
+            opacity: 1,
+            rotateX: 0,
+            duration: 1.1,
+            stagger: 0.08,
+          },
+          '-=0.8'
+        )
+        .fromTo(
+          '.social-link',
+          { y: 40, opacity: 0 },
+          { y: 0, opacity: 1, stagger: 0.1, duration: 0.8 },
+          '-=0.6'
+        );
 
     } else {
       document.body.style.overflow = '';
@@ -165,14 +180,14 @@ export default function Navbar() {
         )}
       >
         {/* Logo with subtle reveal */}
-        <a 
-          href="/" 
+        <a
+          href="/"
           className="group relative z-[101] flex items-center gap-3"
         >
           <div className="relative overflow-hidden">
-            <img 
-              src="/images/logo.png" 
-              alt="Doit Design & Interiors" 
+            <img
+              src="/images/logo.png"
+              alt="Doit Design & Interiors"
               className="h-9 md:h-11 w-auto object-contain transition-all duration-500 group-hover:scale-105"
             />
           </div>
@@ -184,25 +199,62 @@ export default function Navbar() {
         {/* Desktop Navigation - Elevated */}
         <div className="hidden md:flex items-center gap-10">
           {navLinks.map((link, i) => (
-            <a
-              key={link.name}
-              href={link.href}
-              ref={el => { linksRef.current[i] = el; }}
-              className="group relative px-1 py-2 text-sm font-medium tracking-[0.5px] text-doit-white/75 hover:text-white transition-all duration-300 overflow-hidden"
-            >
-              {/* Primary Text */}
-              <span className="relative inline-block transition-all duration-500 group-hover:-translate-y-3">
-                {link.name}
-              </span>
+            link.subLinks ? (
+              <div
+                key={link.name}
+                ref={el => { linksRef.current[i] = el; }}
+                className="group relative px-1 py-2 text-sm font-medium tracking-[0.5px] text-doit-white/75 hover:text-white transition-all duration-300"
+              >
+                <div className="flex items-center gap-1.5 cursor-pointer">
+                  <span className="relative inline-block transition-all duration-500 group-hover:-translate-y-3">
+                    {link.name}
+                  </span>
+                  {/* Hover Reveal Layer */}
+                  <span className="absolute left-1 text-doit-teal font-serif italic tracking-normal text-base translate-y-0 opacity-0 group-hover:opacity-100 group-hover:-translate-y-3 transition-all duration-500 pointer-events-none">
+                    {link.name}
+                  </span>
+                  
+                  <svg className="w-3.5 h-3.5 mb-0.5 transition-transform duration-300 group-hover:-translate-y-1 group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
 
-              {/* Hover Reveal Layer */}
-              <span className="absolute left-0 top-full text-doit-teal font-serif italic tracking-normal text-base translate-y-0 opacity-0 group-hover:opacity-100 group-hover:-translate-y-3 transition-all duration-500 pointer-events-none">
-                {link.name}
-              </span>
-
-              {/* Underline accent */}
-              <span className="absolute bottom-0 left-1/2 h-[1px] w-0 bg-gradient-to-r from-transparent via-doit-teal to-transparent group-hover:w-full transition-all duration-700" />
-            </a>
+                {/* Dropdown Menu */}
+                <div className="absolute left-1/2 -translate-x-1/2 top-full pt-4 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 z-50">
+                  <div className="w-48 bg-doit-surface-elevated border border-doit-border rounded-xl shadow-xl overflow-hidden py-2 flex flex-col">
+                    {link.subLinks.map(sub => (
+                      <a
+                        key={sub.name}
+                        href={sub.href}
+                        className="px-5 py-3 text-sm text-doit-stone hover:text-doit-teal hover:bg-white/5 transition-colors duration-200 text-center"
+                      >
+                        {sub.name}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <a
+                key={link.name}
+                href={link.href}
+                ref={el => { linksRef.current[i] = el; }}
+                className="group relative px-1 py-2 text-sm font-medium tracking-[0.5px] text-doit-white/75 hover:text-white transition-all duration-300 overflow-hidden"
+              >
+                {/* Primary Text */}
+                <span className="relative inline-block transition-all duration-500 group-hover:-translate-y-3">
+                  {link.name}
+                </span>
+  
+                {/* Hover Reveal Layer */}
+                <span className="absolute left-0 top-full text-doit-teal font-serif italic tracking-normal text-base translate-y-0 opacity-0 group-hover:opacity-100 group-hover:-translate-y-3 transition-all duration-500 pointer-events-none">
+                  {link.name}
+                </span>
+  
+                {/* Underline accent */}
+                <span className="absolute bottom-0 left-1/2 h-[1px] w-0 bg-gradient-to-r from-transparent via-doit-teal to-transparent group-hover:w-full transition-all duration-700" />
+              </a>
+            )
           ))}
         </div>
 
@@ -214,19 +266,19 @@ export default function Navbar() {
           aria-label="Toggle menu"
         >
           <div className="relative w-6 h-6">
-            <span 
+            <span
               className={cn(
                 "absolute left-0 top-1/2 h-[1.5px] w-full bg-white transition-all duration-500",
                 isOpen ? "rotate-45 top-1/2" : "-translate-y-1.5"
               )}
             />
-            <span 
+            <span
               className={cn(
                 "absolute left-0 top-1/2 h-[1.5px] w-full bg-white transition-all duration-500",
                 isOpen ? "opacity-0" : ""
               )}
             />
-            <span 
+            <span
               className={cn(
                 "absolute left-0 top-1/2 h-[1.5px] w-full bg-white transition-all duration-500",
                 isOpen ? "-rotate-45 top-1/2" : "translate-y-1.5"
@@ -237,7 +289,9 @@ export default function Navbar() {
 
         {/* Desktop "Let's Talk" Button */}
         <a
-          href="#contact"
+          href={WHATSAPP_URL}
+          target="_blank"
+          rel="noopener noreferrer"
           className="hidden md:flex items-center gap-3 px-8 py-3.5 rounded-full border border-doit-teal/30 hover:border-doit-teal text-sm font-medium tracking-widest transition-all duration-500 hover:bg-doit-teal hover:text-doit-black group"
         >
           LET'S TALK
@@ -257,16 +311,36 @@ export default function Navbar() {
           <div className="max-w-4xl mx-auto w-full space-y-2">
             {navLinks.map((link, i) => (
               <div key={link.name} className="overflow-hidden">
-                <a
-                  href={link.href}
-                  onClick={() => setIsOpen(false)}
-                  ref={el => { overlayLinksRef.current[i] = el; }}
-                  className="block font-serif text-[13vw] md:text-[9vw] leading-[0.82] tracking-[-2.5px] text-white hover:text-doit-teal transition-colors duration-500 cursor-pointer group"
-                >
-                  <span className="inline-block group-hover:translate-x-3 transition-transform duration-700">
-                    {link.name}
-                  </span>
-                </a>
+                {link.subLinks ? (
+                  <div ref={el => { overlayLinksRef.current[i] = el; }} className="group block text-white hover:text-doit-teal transition-colors duration-500">
+                     <span className="font-serif text-[13vw] md:text-[9vw] leading-[0.82] tracking-[-2.5px] inline-block transition-transform duration-700">
+                        {link.name}
+                     </span>
+                     <div className="ml-8 mt-4 md:mt-6 flex flex-col gap-4">
+                       {link.subLinks.map(sub => (
+                          <a 
+                            key={sub.name} 
+                            href={sub.href} 
+                            onClick={() => setIsOpen(false)} 
+                            className="font-sans text-xl md:text-2xl tracking-wider text-doit-stone hover:text-doit-teal transition-colors"
+                          >
+                            {sub.name}
+                          </a>
+                       ))}
+                     </div>
+                  </div>
+                ) : (
+                  <a
+                    href={link.href}
+                    onClick={() => setIsOpen(false)}
+                    ref={el => { overlayLinksRef.current[i] = el; }}
+                    className="block font-serif text-[13vw] md:text-[9vw] leading-[0.82] tracking-[-2.5px] text-white hover:text-doit-teal transition-colors duration-500 cursor-pointer group"
+                  >
+                    <span className="inline-block group-hover:translate-x-3 transition-transform duration-700">
+                      {link.name}
+                    </span>
+                  </a>
+                )}
               </div>
             ))}
           </div>
@@ -285,7 +359,7 @@ export default function Navbar() {
               © DOIT STUDIO 2026
             </div>
 
-            <button 
+            <button
               onClick={() => setIsOpen(false)}
               className="md:hidden text-xs uppercase tracking-widest border border-white/30 px-6 py-3 hover:bg-white hover:text-black transition-all"
             >
