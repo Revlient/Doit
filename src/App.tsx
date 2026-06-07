@@ -5,8 +5,13 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Home from './pages/Home';
 import Work from './pages/Work';
+import Blog from './pages/Blog';
+import Services from './pages/Services';
+import CivilWorks from './pages/packages/CivilWorks';
+import InteriorWorks from './pages/packages/InteriorWorks';
 import ScrollToTop from './components/ScrollToTop';
 import Preloader from './components/Preloader';
+import FloatingUI from './components/FloatingUI';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -50,9 +55,14 @@ function App() {
       <Router>
         <Preloader />
         <ScrollToTop />
+        <FloatingUI />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/work" element={<Work />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/packages/Civil Works" element={<CivilWorks />} />
+          <Route path="/packages/Interior Works" element={<InteriorWorks />} />
         </Routes>
       </Router>
     </ReactLenis>

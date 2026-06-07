@@ -1,8 +1,9 @@
 import HeroSignature from '../components/HeroSignature';
+import ServicesSection from '../components/ServicesSection';
 import AboutPhilosophy from '../components/AboutPhilosophy';
 import ProcessSection from '../components/ProcessSection';
-import GalleryIntro from '../components/GalleryIntro';
-import Gallery from '../components/Gallery/Gallery';
+import SelectedWorks from '../components/SelectedWorks';
+import BlogSection from '../components/BlogSection';
 import ContactCTA from '../components/ContactCTA';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -15,19 +16,14 @@ export default function Home() {
 
       <main>
         <HeroSignature />
+        <ServicesSection />
         <AboutPhilosophy />
         <ProcessSection />
-        <GalleryIntro />
-        
-        {/* Gallery modified to remove internal headers as we have an Intro section now */}
-        <div className="opacity-100"> 
-             {/* Limit to 6 items and show View More button */}
-             <Gallery limit={6} showViewMore={true} />
-        </div>
-
+        <SelectedWorks />
+        <BlogSection />
         <ContactCTA />
       </main>
-      
+
       <Footer />
     </div>
   );

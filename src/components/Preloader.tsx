@@ -34,7 +34,7 @@ export default function Preloader() {
       });
 
       const letters = gsap.utils.toArray('.loader-char');
-      
+
       // Check for reduced motion
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -43,13 +43,13 @@ export default function Preloader() {
         tl.to(containerRef.current, { opacity: 0, duration: 1, delay: 0.5 });
       } else {
         // Full Animation Sequence
-        
+
         // 1. Reveal Letters D O I T
-        tl.fromTo(letters, 
-          { 
+        tl.fromTo(letters,
+          {
             y: 60,
             opacity: 0,
-            filter: 'blur(5px)' 
+            filter: 'blur(5px)'
           },
           {
             y: 0,
@@ -61,64 +61,64 @@ export default function Preloader() {
             delay: 0.3
           }
         )
-        // 2. Increase spacing between DO and IT
-        .to(letters, {
+          // 2. Increase spacing between DO and IT
+          .to(letters, {
             x: (i) => {
-                // DO (indices 0,1) move slightly Left
-                // IT (indices 2,3) move slightly Right
-                if (i < 2) return -15; 
-                return 15;
+              // DO (indices 0,1) move slightly Left
+              // IT (indices 2,3) move slightly Right
+              if (i < 2) return -15;
+              return 15;
             },
             duration: 1.8,
             ease: 'power2.inOut',
-        }, "-=0.8") // Overlap significantly with the reveal settling
-        
-        // 3. Transition to Website
-        // Logo is at top-left. We want to scale down and move towards "Doit." logo position.
-        // We simulate this by moving the text container towards top-left.
-        .to(textContainerRef.current, {
-           scale: 0.3,       
-           y: '-45vh',       
-           x: '-42vw',       
-           duration: 1.2,
-           ease: 'power4.inOut'
-        })
-        .to(containerRef.current, {
-           yPercent: -100,  // Slide the background curtain up 
-           duration: 1.2,
-           ease: 'power3.inOut' 
-        }, "<0.2") // Start 0.2s after text starts moving
-        
-        .to(textContainerRef.current, {
+          }, "-=0.8") // Overlap significantly with the reveal settling
+
+          // 3. Transition to Website
+          // Logo is at top-left. We want to scale down and move towards "Doit." logo position.
+          // We simulate this by moving the text container towards top-left.
+          .to(textContainerRef.current, {
+            scale: 0.3,
+            y: '-45vh',
+            x: '-42vw',
+            duration: 1.2,
+            ease: 'power4.inOut'
+          })
+          .to(containerRef.current, {
+            yPercent: -100,  // Slide the background curtain up 
+            duration: 1.2,
+            ease: 'power3.inOut'
+          }, "<0.2") // Start 0.2s after text starts moving
+
+          .to(textContainerRef.current, {
             opacity: 0,
             duration: 0.4
-        }, ">-0.4"); 
+          }, ">-0.4");
       }
 
     }, containerRef);
 
     return () => {
-        ctx.revert();
-        document.body.style.overflow = ''; // Ensure cleanup
-        if (lenis) lenis.start();
+      ctx.revert();
+      document.body.style.overflow = ''; // Ensure cleanup
+      if (lenis) lenis.start();
     };
   }, [lenis]);
 
   if (!enabled) return null;
 
   return (
-    <div 
-      ref={containerRef} 
+    <div
+      ref={containerRef}
       className="fixed inset-0 z-[9999] bg-doit-black flex items-center justify-center pointer-events-none"
     >
       <div ref={textContainerRef} className="overflow-visible flex items-center justify-center translate-y-0 translate-x-0">
-        <h1 
-            className="text-[12vw] md:text-[8vw] font-serif leading-none tracking-tighter flex relative"
+        <h1
+          className="text-[12vw] md:text-[8vw] font-serif leading-none tracking-tighter flex relative"
         >
-            <span className="loader-char inline-block text-doit-teal">D</span>
-            <span className="loader-char inline-block text-doit-teal">O</span>
-            <span className="loader-char inline-block text-doit-deep-blue">I</span>
-            <span className="loader-char inline-block text-doit-deep-blue">T</span>
+          <span className="loader-char inline-block text-doit-teal">D</span>
+          <span className="loader-char inline-block text-doit-teal">O</span>
+          <span className="loader-char inline-block text-doit-deep-blue">I</span>
+          <span className="loader-char inline-block text-doit-deep-blue">T</span>
         </h1>
       </div>
     </div>

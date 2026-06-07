@@ -1,3 +1,4 @@
+import { WHATSAPP_URL } from '../config';
 
 export default function ContactCTA() {
   return (
@@ -16,9 +17,14 @@ export default function ContactCTA() {
             Tell us about your space.
         </p>
 
-        <button className="mt-8 mb-16 px-12 py-4 border border-doit-teal/30 hover:bg-doit-teal hover:text-doit-black hover:border-doit-teal transition-all duration-500 rounded-full text-sm uppercase tracking-widest hover:shadow-[0_0_30px_rgba(47,143,179,0.2)]">
+        <a 
+          href={WHATSAPP_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-8 mb-16 px-12 py-4 border border-doit-teal/30 hover:bg-doit-teal hover:text-doit-black hover:border-doit-teal transition-all duration-500 rounded-full text-sm uppercase tracking-widest hover:shadow-[0_0_30px_rgba(47,143,179,0.2)] inline-block"
+        >
             Get in Touch
-        </button>
+        </a>
       </div>
     </section>
   );
