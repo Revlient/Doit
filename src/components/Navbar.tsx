@@ -3,6 +3,8 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { cn } from '../lib/utils';
 import { WHATSAPP_URL } from '../config';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useLenis } from 'lenis/react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,7 +24,7 @@ const navLinks: NavLink[] = [
       { name: 'Interior Works', href: '/packages/Interior Works' }
     ]
   },
-  { name: 'Work', href: '/#work' },
+  { name: 'Work', href: '/work' },
   { name: 'Process', href: '/#process' },
   { name: 'Contact', href: '/#contact' }
 ];
@@ -36,6 +38,32 @@ export default function Navbar() {
   const hamburgerRef = useRef<HTMLButtonElement>(null);
 
   const [isScrolled, setIsScrolled] = useState(false);
+
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const lenis = useLenis();
+
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setIsOpen(false);
+    
+    if (href.startsWith('/#')) {
+      const hash = href.substring(1);
+      if (pathname === '/') {
+        if (lenis) {
+          const target = document.querySelector(hash);
+          if (target) lenis.scrollTo(target, { offset: 0 });
+        } else {
+          document.querySelector(hash)?.scrollIntoView({ behavior: 'smooth' });
+        }
+        window.history.pushState(null, '', href);
+      } else {
+        navigate(href);
+      }
+    } else {
+      navigate(href);
+    }
+  };
 
   // Magnetic Hover for Hamburger
   useEffect(() => {
@@ -222,6 +250,7 @@ export default function Navbar() {
                       <a
                         key={sub.name}
                         href={sub.href}
+                        onClick={(e) => handleLinkClick(e, sub.href)}
                         className="px-5 py-3 text-sm text-doit-stone hover:text-doit-teal hover:bg-white/5 transition-colors duration-200 text-center"
                       >
                         {sub.name}
@@ -234,6 +263,7 @@ export default function Navbar() {
               <a
                 key={link.name}
                 href={link.href}
+                onClick={(e) => handleLinkClick(e, link.href!)}
                 ref={el => { linksRef.current[i] = el; }}
                 className="group relative px-1 py-2 text-sm font-medium tracking-[0.5px] text-doit-white/75 hover:text-white transition-all duration-300 overflow-hidden"
               >
@@ -317,7 +347,7 @@ export default function Navbar() {
                           <a 
                             key={sub.name} 
                             href={sub.href} 
-                            onClick={() => setIsOpen(false)} 
+                            onClick={(e) => handleLinkClick(e, sub.href)} 
                             className="font-sans text-xl md:text-2xl tracking-wider text-doit-stone hover:text-doit-teal transition-colors"
                           >
                             {sub.name}
@@ -328,7 +358,7 @@ export default function Navbar() {
                 ) : (
                   <a
                     href={link.href}
-                    onClick={() => setIsOpen(false)}
+                    onClick={(e) => handleLinkClick(e, link.href!)}
                     ref={el => { overlayLinksRef.current[i] = el; }}
                     className="block font-serif text-[13vw] md:text-[9vw] leading-[0.82] tracking-[-2.5px] text-white hover:text-doit-teal transition-colors duration-500 cursor-pointer group"
                   >
