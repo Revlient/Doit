@@ -128,8 +128,6 @@ export default function Navbar() {
 
   // Scroll Intelligence
   useEffect(() => {
-    let lastScroll = 0;
-
     const showAnim = gsap.fromTo(
       navRef.current,
       { yPercent: -100 },
@@ -160,8 +158,6 @@ export default function Navbar() {
         } else {
           setIsScrolled(false);
         }
-
-        lastScroll = currentScroll;
       }
     });
 
