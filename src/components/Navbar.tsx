@@ -51,7 +51,7 @@ export default function Navbar() {
       const hash = href.substring(1);
       if (pathname === '/') {
         if (lenis) {
-          const target = document.querySelector(hash);
+          const target = document.querySelector<HTMLElement>(hash);
           if (target) lenis.scrollTo(target, { offset: 0 });
         } else {
           document.querySelector(hash)?.scrollIntoView({ behavior: 'smooth' });

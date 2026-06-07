@@ -9,7 +9,7 @@ export default function ScrollToTop() {
   useEffect(() => {
     if (hash) {
       // Try to find the element and scroll to it
-      const target = document.querySelector(hash);
+      const target = document.querySelector<HTMLElement>(hash);
       if (target) {
         // Small delay to ensure the DOM is ready and any page transitions have started
         setTimeout(() => {
