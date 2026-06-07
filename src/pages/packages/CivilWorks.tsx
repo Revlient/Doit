@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import PackageLayout from '../../components/PackageLayout';
@@ -59,7 +58,6 @@ const tiers: Tier[] = [
 
 export default function CivilWorks() {
   const gridRef = useRef<HTMLDivElement>(null);
-  const ctaRef = useRef<HTMLDivElement>(null);
 
   const prefersRM =
     typeof window !== 'undefined' &&
