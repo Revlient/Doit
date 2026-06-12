@@ -6,6 +6,7 @@ import ProcessSection from '../components/ProcessSection';
 import SelectedWorks from '../components/SelectedWorks';
 import BlogSection from '../components/BlogSection';
 import ContactCTA from '../components/ContactCTA';
+import LocationSection from '../components/LocationSection';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
@@ -24,6 +25,7 @@ export default function Home() {
         <SelectedWorks />
         <BlogSection />
         <ContactCTA />
+        <LocationSection />
       </main>
 
       <Footer />
