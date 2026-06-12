@@ -17,15 +17,15 @@ type NavLink = {
 const navLinks: NavLink[] = [
   { name: 'About', href: '/#about' },
   { name: 'Services', href: '/services' },
-  { 
-    name: 'Packages', 
+  {
+    name: 'Packages',
     subLinks: [
       { name: 'Civil Works', href: '/packages/Civil Works' },
       { name: 'Interior Works', href: '/packages/Interior Works' }
     ]
   },
   { name: 'Projects', href: '/work' },
-  { name: 'Process', href: '/#process' },
+  { name: 'What We Do', href: '/#process' },
   { name: 'Contact', href: '/#contact' }
 ];
 
@@ -46,7 +46,7 @@ export default function Navbar() {
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     setIsOpen(false);
-    
+
     if (href.startsWith('/#')) {
       const hash = href.substring(1);
       if (pathname === '/') {
@@ -237,7 +237,7 @@ export default function Navbar() {
                   <span className="absolute left-1 text-doit-teal font-serif italic tracking-normal text-base translate-y-0 opacity-0 group-hover:opacity-100 group-hover:-translate-y-3 transition-all duration-500 pointer-events-none">
                     {link.name}
                   </span>
-                  
+
                   <svg className="w-3.5 h-3.5 mb-0.5 transition-transform duration-300 group-hover:-translate-y-1 group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
@@ -271,12 +271,12 @@ export default function Navbar() {
                 <span className="relative inline-block transition-all duration-500 group-hover:-translate-y-3">
                   {link.name}
                 </span>
-  
+
                 {/* Hover Reveal Layer */}
                 <span className="absolute left-0 top-full text-doit-teal font-serif italic tracking-normal text-base translate-y-0 opacity-0 group-hover:opacity-100 group-hover:-translate-y-3 transition-all duration-500 pointer-events-none">
                   {link.name}
                 </span>
-  
+
                 {/* Underline accent */}
                 <span className="absolute bottom-0 left-1/2 h-[1px] w-0 bg-gradient-to-r from-transparent via-doit-teal to-transparent group-hover:w-full transition-all duration-700" />
               </a>
@@ -339,21 +339,21 @@ export default function Navbar() {
               <div key={link.name} className="overflow-hidden">
                 {link.subLinks ? (
                   <div ref={el => { overlayLinksRef.current[i] = el; }} className="group block text-white hover:text-doit-teal transition-colors duration-500">
-                     <span className="font-serif text-[13vw] md:text-[9vw] leading-[0.82] tracking-[-2.5px] inline-block transition-transform duration-700">
-                        {link.name}
-                     </span>
-                     <div className="ml-8 mt-4 md:mt-6 flex flex-col gap-4">
-                       {link.subLinks.map(sub => (
-                          <a 
-                            key={sub.name} 
-                            href={sub.href} 
-                            onClick={(e) => handleLinkClick(e, sub.href)} 
-                            className="font-sans text-xl md:text-2xl tracking-wider text-doit-stone hover:text-doit-teal transition-colors"
-                          >
-                            {sub.name}
-                          </a>
-                       ))}
-                     </div>
+                    <span className="font-serif text-[13vw] md:text-[9vw] leading-[0.82] tracking-[-2.5px] inline-block transition-transform duration-700">
+                      {link.name}
+                    </span>
+                    <div className="ml-8 mt-4 md:mt-6 flex flex-col gap-4">
+                      {link.subLinks.map(sub => (
+                        <a
+                          key={sub.name}
+                          href={sub.href}
+                          onClick={(e) => handleLinkClick(e, sub.href)}
+                          className="font-sans text-xl md:text-2xl tracking-wider text-doit-stone hover:text-doit-teal transition-colors"
+                        >
+                          {sub.name}
+                        </a>
+                      ))}
+                    </div>
                   </div>
                 ) : (
                   <a

@@ -170,18 +170,18 @@ export default function AboutPhilosophy() {
 
   const coreValues: CoreValue[] = [
     {
-      title: "Light First",
-      desc: "We design with natural light as the primary material — sculpting space through shadow and reflection.",
-      icon: "☼"
+      title: "Innovative Design",
+      desc: "We blend creativity with precision, crafting spaces that push boundaries while honoring timeless design principles.",
+      icon: "◈"
     },
     {
-      title: "Tactile Truth",
-      desc: "Materials are chosen for how they feel under hand and evolve with time. Patina is celebrated.",
+      title: "Quality Craftsmanship",
+      desc: "Every detail is meticulously executed with premium materials and expert techniques — built to endure for generations.",
       icon: "⟐"
     },
     {
-      title: "Quiet Luxury",
-      desc: "Restraint creates presence. We remove until only the essential remains — honest and timeless.",
+      title: "Client-Centric",
+      desc: "Your vision drives every decision. We listen, plan, and deliver spaces tailored to your unique aspirations and lifestyle.",
       icon: "◐"
     }
   ];
@@ -249,7 +249,7 @@ export default function AboutPhilosophy() {
           {/* HERO */}
           <div className="flex flex-col items-center text-center pt-10 pb-16 md:pb-24">
             <div className="founding-text mb-6 flex items-center gap-2.5 text-xs tracking-[4px] font-mono text-doit-teal">
-              {"EST. 2018".split('').map((char, i) => (
+              {"EST. 2019".split('').map((char, i) => (
                 <span key={i} className="char inline-block">{char}</span>
               ))}
             </div>
@@ -258,13 +258,13 @@ export default function AboutPhilosophy() {
               ref={headlineRef}
               className="max-w-6xl text-6xl md:text-7xl lg:text-[5.6rem] font-serif leading-[0.96] tracking-[-2.8px] text-balance"
             >
-              {["Interiors", "that", "age", "gracefully.", "Spaces", "that", "feel", "alive."].map((word, i) => (
+              {["A", "Vision", "That", "Inspires", "Excellence."].map((word, i) => (
                 <span key={i} className="word inline-block mr-3 md:mr-4">{word}</span>
               ))}
             </h1>
             
-            <p className="mt-7 max-w-md text-xl text-doit-stone tracking-tight">
-              A quiet philosophy of light, material, and time.
+            <p className="mt-7 max-w-lg text-xl text-doit-stone tracking-tight">
+              Multidisciplinary design & construction firm dedicated to delivering exceptional spaces.
             </p>
           </div>
 
@@ -272,15 +272,14 @@ export default function AboutPhilosophy() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-10 gap-y-16 mb-24 md:mb-32">
             <div className="lg:col-span-5">
               <div className="sticky top-24">
-                <div className="uppercase tracking-[3px] text-xs text-doit-teal mb-4">OUR PHILOSOPHY</div>
+                <div className="uppercase tracking-[3px] text-xs text-doit-teal mb-4">ABOUT US</div>
                 <p className="philosophy-text text-2xl md:text-3xl leading-tight text-doit-stone max-w-[38ch]">
-                  We craft environments where memory, material, and light converge. 
-                  Every project begins with listening.
+                  Founded in 2019 by Mr. Zakhir Hussain and Mr. Najeeb, delivering exceptional spaces through innovative design.
                 </p>
                 
                 <div className="mt-12 border-l border-doit-teal/30 pl-8">
-                  <p className="italic text-xl text-doit-white/90">"The best interiors disappear so life can unfold."</p>
-                  <p className="text-xs tracking-widest mt-4 text-doit-stone">— DOIT STUDIO</p>
+                  <p className="italic text-xl text-doit-white/90">"Transforming ideas into timeless environments that inspire, perform, and endure."</p>
+                  <p className="text-xs tracking-widest mt-4 text-doit-stone">— DO IT DESIGN & INTERIORS</p>
                 </div>
               </div>
             </div>
@@ -307,7 +306,7 @@ export default function AboutPhilosophy() {
 
           {/* CORE PRINCIPLES */}
           <div className="mb-28">
-            <div className="uppercase tracking-[3px] text-xs text-doit-teal mb-8">CORE PRINCIPLES</div>
+            <div className="uppercase tracking-[3px] text-xs text-doit-teal mb-8">WHAT DRIVES US</div>
             <div className="grid md:grid-cols-3 gap-6">
               {coreValues.map((value, i) => (
                 <div 
@@ -331,17 +330,15 @@ export default function AboutPhilosophy() {
           <div className="max-w-3xl mx-auto text-center">
             <div className="text-doit-teal text-xs tracking-[4px] mb-5">OUR STORY</div>
             <h2 className="text-5xl md:text-6xl font-serif tracking-[-2px] leading-none mb-12">
-              Founded in the belief that<br />homes should improve with age.
+              Comprehensive Solutions,<br />Exceptional Results.
             </h2>
 
             <div className="space-y-8 text-left text-lg text-doit-stone leading-relaxed">
               <p className="philosophy-text">
-                Doit was born from a frustration with disposable design. We create spaces that 
-                develop character over decades — where oak deepens, brass warms, and linen softens with every touch.
+                We offer comprehensive solutions in architecture, interiors, exteriors, landscaping, and civil construction, serving both residential and commercial clients. Our integrated approach ensures every project is thoughtfully planned, meticulously executed, and tailored to meet the unique aspirations of our clients.
               </p>
               <p className="philosophy-text">
-                Our process is slow by intention. We spend months understanding how families actually live 
-                before drawing the first line. The result is architecture that feels inevitable.
+                Driven by creativity, precision, and a passion for excellence, we transform ideas into timeless environments that seamlessly blend functionality, aesthetics, and lasting value. From budget-conscious developments to premium projects, our commitment remains unwavering — creating spaces that inspire, perform, and endure for generations.
               </p>
             </div>
 

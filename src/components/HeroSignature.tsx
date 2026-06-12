@@ -12,9 +12,9 @@ export default function HeroSignature() {
         playsInline
         preload="metadata"
       >
-        <source 
-          src="https://videos.pexels.com/video-files/10135156/10135156-uhd_2560_1440_30fps.mp4" 
-          type="video/mp4" 
+        <source
+          src="https://videos.pexels.com/video-files/10135156/10135156-uhd_2560_1440_30fps.mp4"
+          type="video/mp4"
         />
         Your browser does not support the video tag.
       </video>
@@ -23,10 +23,10 @@ export default function HeroSignature() {
       <div className="absolute inset-0 z-10 pointer-events-none">
         {/* Strong left-to-right gradient — INCREASED opacity for text legibility */}
         <div className="absolute inset-0 bg-gradient-to-r from-doit-black via-doit-black/92 via-55% to-doit-black/20" />
-        
+
         {/* Subtle teal + deep blue cinematic color grade */}
         <div className="absolute inset-0 bg-gradient-to-br from-doit-teal/[0.035] via-transparent to-doit-deep-blue/[0.08] mix-blend-overlay" />
-        
+
         {/* Soft cinematic vignette for premium filmic quality */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_35%,rgba(0,0,0,0.45)_92%)]" />
       </div>
@@ -34,11 +34,11 @@ export default function HeroSignature() {
       {/* Content Container — Editorial, spacious, asymmetric luxury layout */}
       <div className="relative z-20 h-full w-full max-w-[1920px] mx-auto px-6 md:px-16 flex items-center">
         <div className="max-w-[620px] lg:max-w-[680px] pt-8 md:pt-0">
-          
-          {/* Subtle pre-headline — adds exclusivity without cliché */}
+
+          {/* Subtitle — Delivering Excellence */}
           <div className="mb-5 md:mb-6">
             <span className="font-sans uppercase tracking-[4px] text-[10px] md:text-[11px] text-doit-teal/60">
-              FOR THOSE WHO VALUE RESTRAINT
+              Delivering Excellence Through Design
             </span>
           </div>
 
@@ -50,11 +50,10 @@ export default function HeroSignature() {
             </span>
           </h1>
 
-          {/* Body copy — Elevated tracking, breathing room, quiet luxury tone */}
-          <div className="max-w-[430px] ml-0.5">
+          {/* Body copy */}
+          <div className="max-w-[480px] ml-0.5">
             <p className="text-doit-stone text-[15px] md:text-[16.5px] leading-[1.7] tracking-[0.012em] font-sans">
-              Designing spaces that balance form, function, and feeling.<br />
-              Curated for those who seek quiet luxury.
+              Creating functional, elegant, and timeless spaces through innovative design and quality execution.
             </p>
           </div>
 
