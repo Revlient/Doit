@@ -45,7 +45,7 @@ export default function HeroSignature() {
           {/* Hero Headline — Dramatic yet refined typography — Both words use font-serif (Montserrat) */}
           <h1 className="font-serif text-doit-white text-[15.5vw] md:text-[11.2vw] lg:text-[8.2vw] leading-[0.81] tracking-[-0.048em] mb-7 md:mb-8">
             Timeless<br />
-            <span className="font-serif italic font-light tracking-[-0.015em] text-doit-teal/70 ml-3 md:ml-6 lg:ml-10">
+            <span className="font-serif  font-light tracking-[-0.015em] text-doit-white  ml-3 md:ml-6 lg:ml-10">
               Interiors
             </span>
           </h1>
