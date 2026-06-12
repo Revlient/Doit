@@ -24,7 +24,7 @@ const navLinks: NavLink[] = [
       { name: 'Interior Works', href: '/packages/Interior Works' }
     ]
   },
-  { name: 'Work', href: '/work' },
+  { name: 'Projects', href: '/work' },
   { name: 'Process', href: '/#process' },
   { name: 'Contact', href: '/#contact' }
 ];

@@ -1,4 +1,5 @@
 import HeroSignature from '../components/HeroSignature';
+import SocialBar from '../components/SocialBar';
 import ServicesSection from '../components/ServicesSection';
 import AboutPhilosophy from '../components/AboutPhilosophy';
 import ProcessSection from '../components/ProcessSection';
@@ -16,6 +17,7 @@ export default function Home() {
 
       <main>
         <HeroSignature />
+        <SocialBar />
         <ServicesSection />
         <AboutPhilosophy />
         <ProcessSection />
