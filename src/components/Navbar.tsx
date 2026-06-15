@@ -212,7 +212,7 @@ export default function Navbar() {
             <img
               src="/images/logo.png"
               alt="Doit Design & Interiors"
-              className="h-9 md:h-11 w-auto object-contain transition-all duration-500 group-hover:scale-105"
+              className="h-10 md:h-15 w-auto object-contain transition-all duration-500 group-hover:scale-115"
             />
           </div>
           <div className="hidden md:block text-[10px] font-mono tracking-[3px] text-doit-white/40 group-hover:text-doit-teal/70 transition-colors">

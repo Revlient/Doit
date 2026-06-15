@@ -2,9 +2,19 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { WHATSAPP_URL } from '../config';
 
-export default function FloatingUI() {
+interface FloatingUIProps {
+  onToggle?: (isOpen: boolean) => void;
+}
+
+export default function FloatingUI({ onToggle }: FloatingUIProps) {
   const mainBtnRef = useRef<HTMLButtonElement>(null);
   const [isOpen, setIsOpen] = useState(false);
+
+  const handleToggle = () => {
+    const next = !isOpen;
+    setIsOpen(next);
+    onToggle?.(next);
+  };
 
   /* ── Entrance animation for the main FAB ── */
   useEffect(() => {
@@ -91,7 +101,7 @@ export default function FloatingUI() {
          ═══════════════════════════════════════ */}
       <button 
         ref={mainBtnRef}
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={handleToggle}
         className="w-14 h-14 flex items-center justify-center rounded-full bg-doit-teal text-white shadow-[0_6px_24px_rgba(47,143,179,0.4)] transition-all duration-300 hover:scale-110 active:scale-95 z-[91]"
         aria-label="Toggle contact menu"
       >

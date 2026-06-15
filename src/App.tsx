@@ -12,6 +12,7 @@ import InteriorWorks from './pages/packages/InteriorWorks';
 import ScrollToTop from './components/ScrollToTop';
 import Preloader from './components/Preloader';
 import FloatingUI from './components/FloatingUI';
+import DoitChatbot from './components/DoitChatbot';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -56,6 +57,7 @@ function App() {
         <Preloader />
         <ScrollToTop />
         <FloatingUI />
+        <DoitChatbot />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/work" element={<Work />} />
