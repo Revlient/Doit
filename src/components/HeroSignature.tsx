@@ -22,7 +22,7 @@ export default function HeroSignature() {
       {/* Multi-layered Sophisticated Overlays — Enhanced left-side visibility */}
       <div className="absolute inset-0 z-10 pointer-events-none">
         {/* Strong left-to-right gradient — INCREASED opacity for text legibility */}
-        <div className="absolute inset-0 bg-gradient-to-r from-doit-black via-doit-black/92 via-55% to-doit-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-doit-black via-doit-black/92 via-20% to-doit-black/20" />
 
         {/* Subtle teal + deep blue cinematic color grade */}
         <div className="absolute inset-0 bg-gradient-to-br from-doit-teal/[0.035] via-transparent to-doit-deep-blue/[0.08] mix-blend-overlay" />
@@ -45,7 +45,7 @@ export default function HeroSignature() {
           {/* Hero Headline — Dramatic yet refined typography — Both words use font-serif (Montserrat) */}
           <h1 className="font-serif text-doit-white text-[15.5vw] md:text-[11.2vw] lg:text-[8.2vw] leading-[0.81] tracking-[-0.048em] mb-7 md:mb-8">
             Timeless<br />
-            <span className="font-serif  font-light tracking-[-0.015em] text-doit-white  ml-3 md:ml-6 lg:ml-10">
+            <span className="font-serif  font-light tracking-[-0.015em] text-doit-deep-blue  ml-3 md:ml-6 lg:ml-10">
               Interiors
             </span>
           </h1>
