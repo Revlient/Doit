@@ -361,18 +361,25 @@ function uniqueId() {
    COMPONENT
    ═══════════════════════════════════════════════════════════════ */
 
-interface DoitChatbotProps {
-  floatingUIOpen?: boolean;
-}
-
-export default function DoitChatbot({ floatingUIOpen = false }: DoitChatbotProps) {
+export default function DoitChatbot() {
   const [isOpen, setIsOpen] = useState(false);
+  const [floatingUIOpen, setFloatingUIOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
   const [showPulse, setShowPulse] = useState(true);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Listen for FloatingUI toggle events
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      setFloatingUIOpen(detail.isOpen);
+    };
+    window.addEventListener('floatingui-toggle', handler);
+    return () => window.removeEventListener('floatingui-toggle', handler);
+  }, []);
   const inputRef = useRef<HTMLInputElement>(null);
   const chatContainerRef = useRef<HTMLDivElement>(null);
 
