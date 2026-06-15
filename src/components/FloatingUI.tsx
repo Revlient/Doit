@@ -2,18 +2,14 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { WHATSAPP_URL } from '../config';
 
-interface FloatingUIProps {
-  onToggle?: (isOpen: boolean) => void;
-}
-
-export default function FloatingUI({ onToggle }: FloatingUIProps) {
+export default function FloatingUI() {
   const mainBtnRef = useRef<HTMLButtonElement>(null);
   const [isOpen, setIsOpen] = useState(false);
 
   const handleToggle = () => {
     const next = !isOpen;
     setIsOpen(next);
-    onToggle?.(next);
+    window.dispatchEvent(new CustomEvent('floatingui-toggle', { detail: { isOpen: next } }));
   };
 
   /* ── Entrance animation for the main FAB ── */
