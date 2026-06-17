@@ -39,10 +39,9 @@ export default function Footer() {
             <div className="md:col-span-2">
                 <span className="text-xs font-sans tracking-[0.2em] uppercase text-doit-teal block mb-6 opacity-80">Social</span>
                 <ul className="flex flex-col gap-3 font-sans text-sm tracking-wide">
-                    <li><a href="#" className="hover:text-doit-teal transition-colors duration-300">Instagram</a></li>
-                    <li><a href="#" className="hover:text-doit-teal transition-colors duration-300">Pinterest</a></li>
-                    <li><a href="#" className="hover:text-doit-teal transition-colors duration-300">LinkedIn</a></li>
-                    <li><a href="#" className="hover:text-doit-teal transition-colors duration-300">Behance</a></li>
+                    <li><a href="https://www.facebook.com/doitdesigninteriors" target="_blank" rel="noopener noreferrer" className="hover:text-doit-teal transition-colors duration-300">Facebook</a></li>
+                    <li><a href="https://www.youtube.com/@doitdesignandinteriors" target="_blank" rel="noopener noreferrer" className="hover:text-doit-teal transition-colors duration-300">YouTube</a></li>
+                    <li><a href="https://www.instagram.com/doitdesigninterior" target="_blank" rel="noopener noreferrer" className="hover:text-doit-teal transition-colors duration-300">Instagram</a></li>
                 </ul>
             </div>
 
