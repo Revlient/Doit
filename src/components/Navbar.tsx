@@ -376,9 +376,9 @@ export default function Navbar() {
         <div className="border-t border-white/10 py-12 px-6 md:px-12 mt-auto">
           <div className="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-10">
             <div className="flex flex-col md:flex-row gap-8 md:gap-12 text-sm tracking-widest text-doit-stone">
-              <a href="#" className="social-link hover:text-white transition-colors">INSTAGRAM</a>
-              <a href="#" className="social-link hover:text-white transition-colors">BEHANCE</a>
-              <a href="#" className="social-link hover:text-white transition-colors">LINKEDIN</a>
+              <a href="https://www.facebook.com/doitdesigninteriors" target="_blank" rel="noopener noreferrer" className="social-link hover:text-white transition-colors">FACEBOOK</a>
+              <a href="https://www.youtube.com/@doitdesignandinteriors" target="_blank" rel="noopener noreferrer" className="social-link hover:text-white transition-colors">YOUTUBE</a>
+              <a href="https://www.instagram.com/doitdesigninterior" target="_blank" rel="noopener noreferrer" className="social-link hover:text-white transition-colors">INSTAGRAM</a>
             </div>
 
             <div className="text-xs text-doit-stone/70 font-mono tracking-[2px]">
