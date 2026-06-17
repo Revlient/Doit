@@ -73,16 +73,16 @@ export default function LocationSection() {
               <div className="absolute top-0 left-0 w-8 h-8 border-t border-l border-doit-teal/30 rounded-tl-2xl z-10 pointer-events-none" />
               <div className="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-doit-teal/30 rounded-br-2xl z-10 pointer-events-none" />
 
-              {/* Google Maps Embed — Vaikom, Kottayam */}
+              {/* Google Maps Embed — Chelakkara, Thrissur */}
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31475.16!2d76.38!3d9.75!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b07c2e0c1e2e77d%3A0x5e7e11a82e2a3e1!2sVaikom%2C%20Kerala!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                src="https://maps.google.com/maps?q=Do+It+Design+%26+Interiors,+Venganellur,+Chelakkara,+Kerala+680586&t=&z=14&ie=UTF8&iwloc=&output=embed"
                 width="100%"
                 height="100%"
                 style={{ border: 0, minHeight: '420px' }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="DOIT Interiors Location — Vaikom, Kottayam"
+                title="DOIT Interiors Location — Chelakkara, Thrissur"
                 className="grayscale-[0.85] contrast-[1.1] brightness-[0.7] group-hover:grayscale-[0.3] group-hover:brightness-[0.85] transition-all duration-700"
               />
 
@@ -90,7 +90,7 @@ export default function LocationSection() {
               <div className="absolute bottom-4 left-4 z-10 px-4 py-2.5 rounded-xl bg-doit-black/80 backdrop-blur-md border border-doit-border flex items-center gap-3">
                 <div className="w-2 h-2 bg-doit-teal rounded-full animate-pulse" />
                 <span className="text-[11px] font-sans tracking-[2px] uppercase text-doit-white/80">
-                  Vaikom, Kottayam
+                  Chelakkara, Thrissur
                 </span>
               </div>
             </div>
@@ -116,8 +116,9 @@ export default function LocationSection() {
                     DOIT Design & Interiors
                   </p>
                   <p className="text-doit-stone text-sm md:text-[15px] font-light leading-relaxed mt-1">
-                    Vaikom, Kottayam<br />
-                    Kerala, India
+                    Venganellur shiva kshethram road.<br />
+                    Chelakkara, Thrissur (Dt)<br />
+                    Kerala. Pin - 680586
                   </p>
                 </div>
               </div>
@@ -145,7 +146,7 @@ export default function LocationSection() {
 
                 {/* Email */}
                 <a
-                  href="mailto:hello@doitinteriors.com"
+                  href="mailto:doitdesigninterior@gmail.com"
                   className="group flex items-center gap-4 text-doit-stone hover:text-doit-teal transition-colors duration-300"
                 >
                   <div className="w-10 h-10 rounded-full bg-doit-teal/10 border border-doit-teal/20 flex items-center justify-center shrink-0 group-hover:bg-doit-teal/20 transition-colors duration-300">
@@ -156,7 +157,7 @@ export default function LocationSection() {
                   </div>
                   <div>
                     <span className="text-[10px] font-sans tracking-[2px] uppercase text-doit-stone/50 block mb-0.5">Email</span>
-                    <span className="text-sm md:text-[15px] font-sans tracking-wide">hello@doitinteriors.com</span>
+                    <span className="text-sm md:text-[15px] font-sans tracking-wide">doitdesigninterior@gmail.com</span>
                   </div>
                 </a>
 
@@ -221,7 +222,7 @@ export default function LocationSection() {
                   <div className="space-y-1.5">
                     <div className="flex justify-between gap-8 text-sm font-sans">
                       <span className="text-doit-stone/60">Mon – Sat</span>
-                      <span className="text-doit-white/80 tracking-wide">9:00 AM – 6:00 PM</span>
+                      <span className="text-doit-white/80 tracking-wide">9.30 AM - 5.30 PM</span>
                     </div>
                     <div className="flex justify-between gap-8 text-sm font-sans">
                       <span className="text-doit-stone/60">Sunday</span>

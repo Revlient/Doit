@@ -62,8 +62,9 @@ export default function Footer() {
                  <div className="mt-12">
                     <span className="text-xs font-sans tracking-[0.2em] uppercase text-doit-stone block mb-2 opacity-60">Location</span>
                     <p className="text-doit-stone text-sm font-light">
-                        Vaikom,<br/>
-                        Kottayam
+                        Venganellur shiva kshethram road,<br/>
+                        Chelakkara, Thrissur<br/>
+                        Kerala - 680586
                     </p>
                  </div>
             </div>
