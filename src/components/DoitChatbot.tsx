@@ -67,9 +67,9 @@ const KNOWLEDGE_BASE = {
   ],
   location: {
     studio: 'DOIT Design & Interiors',
-    address: 'Vaikom, Kottayam, Kerala, India',
-    hours: { weekday: 'Mon – Sat: 9:00 AM – 6:00 PM', sunday: 'Sunday: By Appointment' },
-    email: 'hello@doitinteriors.com',
+    address: 'Venganellur shiva kshethram road, Chelakkara, Thrissur, Kerala 680586',
+    hours: { weekday: 'Mon – Sat: 9.30 AM - 5.30 PM', sunday: 'Sunday: By Appointment' },
+    email: 'doitdesigninterior@gmail.com',
   },
   about: {
     founded: '2019',
@@ -336,9 +336,9 @@ function generateResponse(userMessage: string): { content: string; quickReplies?
   }
 
   // 19. Kerala specific
-  if (/\b(kerala|kottayam|vaikom|kochi|ernakulam|thrissur|trivandrum|calicut|kozhikode|malappuram)\b/i.test(msg)) {
+  if (/\b(kerala|chelakkara|thrissur|kochi|ernakulam|trivandrum|calicut|kozhikode|malappuram)\b/i.test(msg)) {
     return {
-      content: `Yes, we're based in **Vaikom, Kottayam, Kerala** and serve clients across Kerala! 🌴\n\nOur studio is conveniently located and we offer:\n• Free site visits across Kerala\n• On-ground project execution with local expertise\n• Transparent pricing with no travel surcharges\n\nWould you like to schedule a site visit for your location?`,
+      content: `Yes, we're based in **Chelakkara, Thrissur, Kerala** and serve clients across Kerala! 🌴\n\nOur studio is conveniently located and we offer:\n• Free site visits across Kerala\n• On-ground project execution with local expertise\n• Transparent pricing with no travel surcharges\n\nWould you like to schedule a site visit for your location?`,
       quickReplies: ['Book Site Visit', 'Get Directions', 'Contact Us'],
     };
   }
